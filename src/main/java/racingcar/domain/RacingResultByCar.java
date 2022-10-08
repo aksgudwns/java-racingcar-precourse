@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.utils.NumberRule;
+
 import java.util.List;
 
 public class RacingResultByCar {
@@ -13,7 +15,7 @@ public class RacingResultByCar {
     }
 
     public void setPositionPlusOne(boolean isForward) {
-        this.position += isForward ? 1 : 0;
+        this.position += isForward ? NumberRule.FORWARD_NUMBER.getValue() : 0;
     }
 
     public int compareToPosition(int maxPosition) {

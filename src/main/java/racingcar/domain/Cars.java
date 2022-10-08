@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.utils.NumberRule;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +30,7 @@ public class Cars {
     private RacingResult initializeRacingResult() {
         List<RacingResultByCar> racingResultByCars = new ArrayList<>();
         for(Car car : cars)
-            racingResultByCars.add(new RacingResultByCar(car.getName(), 0));
+            racingResultByCars.add(new RacingResultByCar(car.getName(), NumberRule.INITIAL_POSITION.getValue()));
         return new RacingResult(racingResultByCars);
     }
 
