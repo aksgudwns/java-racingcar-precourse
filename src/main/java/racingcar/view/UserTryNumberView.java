@@ -1,6 +1,6 @@
 package racingcar.view;
 
-public class UserTryNumberView extends UserCarView {
+public class UserTryNumberView extends RacingCarView {
     @Override
     public void print() {
         super.print();
