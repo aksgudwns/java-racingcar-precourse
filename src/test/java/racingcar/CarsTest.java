@@ -1,6 +1,5 @@
 package racingcar;
 
-import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,11 +23,6 @@ public class CarsTest {
                 new Car("Audi"), new Car("Benz"), new Car("Ford"), new Car("Volvo")));
     }
 
-    @Test
-    void 자동차_출력_테스트() {
-        Assertions.assertThat(cars.race(0).toString())
-                .contains("Audi : \nBenz : \nFord : \nVolvo : ");
-    }
 
     @Test
     void 자동차_1회경주_후_출력_테스트() {
@@ -46,27 +40,24 @@ public class CarsTest {
         assertRandomNumberInRangeTest(
                 () -> {
                     Assertions.assertThat(cars.race(2).toString())
-                            .contains("Audi : -\nBenz : --\nFord : -\nVolvo : ");
+                            .contains("Audi : -\nBenz : -\nFord : -\nVolvo : -");
                 },
-                MOVING_FORWARD, STOP,               //Audi
-                MOVING_FORWARD, MOVING_FORWARD,     //Benz
-                STOP, MOVING_FORWARD,               //Ford
-                STOP, STOP                          //Volvo
+                MOVING_FORWARD, STOP, MOVING_FORWARD, MOVING_FORWARD,
+                STOP, MOVING_FORWARD, STOP, STOP
         );
     }
 
     @Test
     void 단독_우승_테스트() {
-
         assertRandomNumberInRangeTest(
                 () -> {
-                    Assertions.assertThat((cars.race(2).getWinner()
-                            .contains("Benz"))).isTrue();
+                    Assertions.assertThat((cars.race(2)
+                            .getFinalRacingResult()
+                            .getWinner()
+                            .contains("Ford"))).isTrue();
                 },
-                MOVING_FORWARD, STOP,               //Audi
-                MOVING_FORWARD, MOVING_FORWARD,     //Benz
-                STOP, MOVING_FORWARD,               //Ford
-                STOP, STOP                          //Volvo
+                MOVING_FORWARD, STOP, MOVING_FORWARD, MOVING_FORWARD,
+                STOP, STOP, MOVING_FORWARD, STOP
         );
     }
 
@@ -75,13 +66,13 @@ public class CarsTest {
     void 공동_우승_테스트() {
         assertRandomNumberInRangeTest(
                 () -> {
-                    Assertions.assertThat(cars.race(2).getWinner()
+                    Assertions.assertThat(cars.race(2)
+                            .getFinalRacingResult()
+                            .getWinner()
                             .containsAll(Arrays.asList("Audi","Benz"))).isTrue();
                 },
-                MOVING_FORWARD, MOVING_FORWARD,     //Audi
-                MOVING_FORWARD, MOVING_FORWARD,     //Benz
-                STOP, MOVING_FORWARD,               //Ford
-                STOP, STOP                          //Volvo
+                MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+                STOP, STOP, STOP, STOP
         );
     }
 
@@ -90,13 +81,13 @@ public class CarsTest {
     void 멈춤_공동_우승_테스트() {
         assertRandomNumberInRangeTest(
                 () -> {
-                    Assertions.assertThat(cars.race(2).getWinner()
+                    Assertions.assertThat(cars.race(2)
+                            .getFinalRacingResult()
+                            .getWinner()
                             .containsAll(Arrays.asList("Audi","Benz","Ford","Volvo"))).isTrue();
                 },
-                STOP, STOP,     //Audi
-                STOP, STOP,     //Benz
-                STOP, STOP,     //Ford
-                STOP, STOP      //Volvo
+                STOP, STOP, STOP, STOP,
+                STOP, STOP, STOP, STOP
         );
     }
 
@@ -105,7 +96,9 @@ public class CarsTest {
     void 한번_공동_우승_테스트() {
         assertRandomNumberInRangeTest(
                 () -> {
-                    Assertions.assertThat(cars.race(1).getWinner()
+                    Assertions.assertThat(cars.race(1)
+                            .getFinalRacingResult()
+                            .getWinner()
                             .containsAll(Arrays.asList("Audi","Benz","Ford","Volvo"))).isTrue();
                 },
                 MOVING_FORWARD,     //Audi
