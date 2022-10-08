@@ -15,31 +15,31 @@ public class Cars {
         this.cars = cars;
     }
 
-    public TrialRacingResultMap race(int tryNumber) {
-        Map<Integer, RacingResult> trialRacingResultMap = new HashMap<>();
-        RacingResult racingResult = initializeRacingResult();
+    public RacingResultMap race(int tryNumber) {
+        Map<Integer, RacingResults> racingResultMap = new HashMap<>();
+        RacingResults racingResults = initializeRacingResult();
         int trialNumber = 0;
         while(trialNumber++ < tryNumber) {
-            RacingResult beforeRacingResult = racingResult;
-            racingResult = race(beforeRacingResult);
-            trialRacingResultMap.put(trialNumber, racingResult.copyOf());
+            RacingResults beforeRacingResults = racingResults;
+            racingResults = race(beforeRacingResults);
+            racingResultMap.put(trialNumber, racingResults.copyOf());
         }
-        return new TrialRacingResultMap(trialRacingResultMap);
+        return new RacingResultMap(racingResultMap);
     }
 
-    private RacingResult initializeRacingResult() {
-        List<RacingResultByCar> racingResultByCars = new ArrayList<>();
+    private RacingResults initializeRacingResult() {
+        List<RacingResult> racingResults = new ArrayList<>();
         for(Car car : cars)
-            racingResultByCars.add(new RacingResultByCar(car.getName(), NumberRule.INITIAL_POSITION.getValue()));
-        return new RacingResult(racingResultByCars);
+            racingResults.add(new RacingResult(car.getName(), NumberRule.INITIAL_POSITION.getValue()));
+        return new RacingResults(racingResults);
     }
 
-    public RacingResult race(RacingResult racingResult) {
+    public RacingResults race(RacingResults racingResults) {
         for(Car car : cars) {
-            RacingResultByCar racingResultByCar = racingResult.getByCarName(car.getName());
-            racingResultByCar.setPositionPlusOne(car.isForward());
+            RacingResult racingResult = racingResults.getByCarName(car.getName());
+            racingResult.forwardPosition(car.isForward());
         }
-        return racingResult;
+        return racingResults;
     }
 
 }

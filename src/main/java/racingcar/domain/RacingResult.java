@@ -1,59 +1,50 @@
 package racingcar.domain;
 
-import java.util.*;
+import racingcar.utils.NumberRule;
+
+import java.util.List;
 
 public class RacingResult {
 
-    List<RacingResultByCar> racingResultByCars;
+    private String carName;
+    private int position;
 
-    public RacingResult(List<RacingResultByCar> racingResultByCars) {
-        this.racingResultByCars = racingResultByCars;
+    public RacingResult(String carName, int position) {
+        this.carName = carName;
+        this.position = position;
     }
 
-    public List<String> getWinner() {
-        List<String> winners = new ArrayList<>();
-        int maxPosition = -1;
-        for(RacingResultByCar racingResultByCar : racingResultByCars) {
-            winners = addWinner(racingResultByCar, maxPosition, winners);
-            maxPosition = racingResultByCar.getMaxPosition(maxPosition);
-        }
-        return winners;
+    public void forwardPosition(boolean isForward) {
+        this.position += isForward ? NumberRule.FORWARD_NUMBER.getValue() : 0;
     }
 
-    private List<String> addWinner(RacingResultByCar racingResultByCar, int maxPosition, List<String> winners) {
-        if(racingResultByCar.compareToPosition(maxPosition) > 0) {
-            winners = new ArrayList<>();
-            racingResultByCar.addWinner(winners);
-        }
-        if(racingResultByCar.compareToPosition(maxPosition) == 0) {
-            racingResultByCar.addWinner(winners);
-        }
-        return winners;
+    public int compareToPosition(int maxPosition) {
+        return this.position - maxPosition;
     }
 
-    public RacingResultByCar getByCarName(String name) {
-        Map<String, RacingResultByCar> map = new HashMap<>();
-        for(RacingResultByCar racingResultByCar : racingResultByCars) {
-            map.put(racingResultByCar.getCarName(), racingResultByCar);
-        }
-        return map.get(name);
+    public void addWinner(List<String> winners) {
+        winners.add(this.carName);
+    }
+
+    public int maxPosition(int maxPosition) {
+        return this.position > maxPosition ? this.position : maxPosition;
+    }
+
+    public String getCarName() {
+        return this.carName;
     }
 
     public RacingResult copyOf() {
-        List<RacingResultByCar> copyList = new ArrayList<>();
-        for(RacingResultByCar racingResultByCar : racingResultByCars) {
-            copyList.add(racingResultByCar.copyOf());
-        }
-        return new RacingResult(copyList);
+        return new RacingResult(this.carName, this.position);
     }
 
     @Override
     public String toString() {
-        String printingResults = "";
-        for(RacingResultByCar racingResultByCar : racingResultByCars) {
-            printingResults += (racingResultByCar.toString());
+        String printPosition = "";
+        int printNumber = this.position;
+        while(printNumber-- > 0) {
+            printPosition += "-";
         }
-        return printingResults;
+        return carName + " : " + printPosition + "\n";
     }
-
 }

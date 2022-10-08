@@ -2,14 +2,12 @@ package racingcar.service;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.TrialRacingResultMap;
+import racingcar.domain.RacingResultMap;
 import racingcar.utils.RacingCarStringUtils;
 import racingcar.utils.RacingCarUtils;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class CarService {
 
@@ -42,7 +40,7 @@ public class CarService {
     }
 
 
-    public TrialRacingResultMap race(Cars cars, int tryNumber) {
+    public RacingResultMap race(Cars cars, int tryNumber) {
         return cars.race(tryNumber);
     }
 

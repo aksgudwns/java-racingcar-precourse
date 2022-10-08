@@ -1,10 +1,10 @@
 package racingcar.view;
 
-import racingcar.domain.TrialRacingResultMap;
+import racingcar.domain.RacingResultMap;
 
 public class RacingResultView {
 
-    public void print(TrialRacingResultMap racingResult) {
+    public void print(RacingResultMap racingResult) {
         System.out.print("실행 결과 \n" + racingResult);
         String winners = "";
         for(String winner : racingResult.getFinalRacingResult().getWinner()) {
