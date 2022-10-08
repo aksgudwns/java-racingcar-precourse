@@ -14,9 +14,9 @@ public class Car {
 
     public Car(String name) {
         if(name == null || "".equals(name))
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이름을 입력해주세요");
         if(name.length() > NAME_LENGTH_LIMIT)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("숫자는 최대5자입니다.");
         this.name = name;
     }
 

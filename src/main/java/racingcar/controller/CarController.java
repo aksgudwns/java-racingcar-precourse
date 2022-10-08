@@ -18,7 +18,7 @@ public class CarController {
             return carService.getCars(userCarView.read());
         } catch(IllegalArgumentException iae) {
             ErrorView errorView = new ErrorView();
-            errorView.print("");
+            errorView.print(iae.getMessage());
             return getCars();
         }
     }
@@ -30,7 +30,7 @@ public class CarController {
             return carService.getTryNumber(userTryNumberView.read());
         } catch(IllegalArgumentException iae) {
             ErrorView errorView = new ErrorView();
-            errorView.print("");
+            errorView.print(iae.getMessage());
             return getTryNumber();
         }
     }

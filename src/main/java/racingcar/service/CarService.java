@@ -5,7 +5,9 @@ import racingcar.domain.Cars;
 import racingcar.domain.TrialRacingResultMap;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class CarService {
 
@@ -13,12 +15,12 @@ public class CarService {
     private static final char CHAR_9 = 57;
 
     public Cars getCars(String userInput) {
-        List<Car> cars = new ArrayList<>();
+        List<Car> carList = new ArrayList<>();
         String[] carNames = userInput.split(",");
         for(String carName : carNames) {
-            cars.add(new Car(carName));
+            carList.add(new Car(carName));
         }
-        return new Cars(cars);
+        return new Cars(carList);
     }
 
     public int getTryNumber(String userInput) {
@@ -28,7 +30,7 @@ public class CarService {
     }
 
     private void numberCheck(char ch) {
-        if(ch < CHAR_0 || ch > CHAR_9) throw new IllegalArgumentException();
+        if(ch < CHAR_0 || ch > CHAR_9) throw new IllegalArgumentException("숫자가 아닌 값이 들어왔습니다.");
     }
 
     public TrialRacingResultMap race(Cars cars, int tryNumber) {
