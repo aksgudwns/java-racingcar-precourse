@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.List;
+
 public class RacingResult {
 
     private String carName;
@@ -22,5 +24,17 @@ public class RacingResult {
             printPosition += "-";
         }
         return carName + " : " + printPosition + "\n";
+    }
+
+    public int compareToPosition(int maxPosition) {
+        return this.position - maxPosition;
+    }
+
+    public void addWinner(List<String> winners) {
+        winners.add(this.carName);
+    }
+
+    public int getMaxPosition(int maxPosition) {
+        return this.position > maxPosition ? this.position : maxPosition;
     }
 }
