@@ -15,16 +15,16 @@ public class Cars {
         this.cars = cars;
     }
 
-    public RacingResultMap race(int tryNumber) {
-        Map<Integer, RacingResults> racingResultMap = new HashMap<>();
+    public RacingResultsMap race(int tryNumber) {
+        Map<Integer, RacingResults> racingResultsMap = new HashMap<>();
         RacingResults racingResults = initializeRacingResult();
         int trialNumber = 0;
         while(trialNumber++ < tryNumber) {
             RacingResults beforeRacingResults = racingResults;
             racingResults = race(beforeRacingResults);
-            racingResultMap.put(trialNumber, racingResults.copyOf());
+            racingResultsMap.put(trialNumber, racingResults.copyOf());
         }
-        return new RacingResultMap(racingResultMap);
+        return new RacingResultsMap(racingResultsMap);
     }
 
     private RacingResults initializeRacingResult() {

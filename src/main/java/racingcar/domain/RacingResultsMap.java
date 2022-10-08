@@ -5,11 +5,11 @@ import java.util.Map;
 /**
  * 시도횟수 별 레이싱결과를 표현하는 Map
  */
-public class RacingResultMap {
+public class RacingResultsMap {
 
     private Map<Integer, RacingResults> racingResultTrialMap;
 
-    public RacingResultMap(Map<Integer, RacingResults> map) {
+    public RacingResultsMap(Map<Integer, RacingResults> map) {
         this.racingResultTrialMap = map;
     }
 

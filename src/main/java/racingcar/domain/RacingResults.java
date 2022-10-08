@@ -42,7 +42,7 @@ public class RacingResults {
     public RacingResults copyOf() {
         List<RacingResult> copyList = new ArrayList<>();
         for(RacingResult racingResult : racingResults) {
-            copyList.add(racingResult.copyOf());
+            copyList.add(racingResult.deepCopyOf());
         }
         return new RacingResults(copyList);
     }

@@ -2,7 +2,7 @@ package racingcar.service;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.RacingResultMap;
+import racingcar.domain.RacingResultsMap;
 import racingcar.utils.RacingCarStringUtils;
 import racingcar.utils.RacingCarUtils;
 
@@ -40,7 +40,7 @@ public class CarService {
     }
 
 
-    public RacingResultMap race(Cars cars, int tryNumber) {
+    public RacingResultsMap race(Cars cars, int tryNumber) {
         return cars.race(tryNumber);
     }
 

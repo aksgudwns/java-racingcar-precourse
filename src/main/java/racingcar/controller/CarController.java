@@ -17,8 +17,7 @@ public class CarController {
             userCarView.print();
             return carService.getCars(userCarView.read());
         } catch(IllegalArgumentException iae) {
-            ErrorView errorView = new ErrorView();
-            errorView.print(iae.getMessage());
+            handleError(iae.getMessage());
             return getCars();
         }
     }
@@ -29,8 +28,7 @@ public class CarController {
             userTryNumberView.print();
             return carService.getTryNumber(userTryNumberView.read());
         } catch(IllegalArgumentException iae) {
-            ErrorView errorView = new ErrorView();
-            errorView.print(iae.getMessage());
+            handleError(iae.getMessage());
             return getTryNumber();
         }
     }
@@ -38,5 +36,10 @@ public class CarController {
     public void play(Cars cars, int tryNumber) {
         RacingResultView racingResultView = new RacingResultView();
         racingResultView.print(carService.race(cars, tryNumber));
+    }
+
+    public void handleError(String message) {
+        ErrorView errorView = new ErrorView();
+        errorView.print(message);
     }
 }

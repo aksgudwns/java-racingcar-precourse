@@ -34,7 +34,7 @@ public class RacingResult {
         return this.carName;
     }
 
-    public RacingResult copyOf() {
+    public RacingResult deepCopyOf() {
         return new RacingResult(this.carName, this.position);
     }
 
