@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
@@ -9,26 +10,20 @@ public class Cars {
         this.cars = cars;
     }
 
-    public void carRace(int tryNumber) {
-        while(tryNumber-- > 0) {
-            carRace();
-        }
-
-    }
-
-    public void carRace() {
+    public RacingResults race(int tryNumber) {
+        List<RacingResult> racingResults = new ArrayList<>();
         for(Car car : cars) {
-            car.race();
+            racingResults.add(race(car, tryNumber));
         }
+        return new RacingResults(racingResults);
     }
 
-
-    @Override
-    public String toString() {
-        String printString = "";
-        for(Car car : this.cars) {
-            printString += car.toString() + "\n";
+    private RacingResult race(Car car, int tryNumber) {
+        RacingResult racingResult = new RacingResult(car.getName(), 0);
+        while(tryNumber-- > 0) {
+            racingResult.setPositionPlusOne(car.isForward());
         }
-        return printString;
+        return racingResult;
     }
+
 }
