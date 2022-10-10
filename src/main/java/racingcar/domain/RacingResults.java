@@ -10,25 +10,14 @@ public class RacingResults {
         this.racingResults = racingResults;
     }
 
-    public List<String> getWinner() {
-        List<String> winners = new ArrayList<>();
-        int maxPosition = -1;
+    public List<String> getWinnerList() {
+        TreeMap<Integer,List<String>> positionNameMap = new TreeMap<>();
         for(RacingResult racingResult : racingResults) {
-            winners = addWinner(racingResult, maxPosition, winners);
-            maxPosition = racingResult.maxPosition(maxPosition);
+            List<String> carNameList = positionNameMap.getOrDefault(racingResult.getPosition(),new ArrayList<>());
+            carNameList.add(racingResult.getCarName());
+            positionNameMap.put(racingResult.getPosition(),carNameList);
         }
-        return winners;
-    }
-
-    private List<String> addWinner(RacingResult racingResult, int maxPosition, List<String> winners) {
-        if(racingResult.compareToPosition(maxPosition) > 0) {
-            winners = new ArrayList<>();
-            racingResult.addWinner(winners);
-        }
-        if(racingResult.compareToPosition(maxPosition) == 0) {
-            racingResult.addWinner(winners);
-        }
-        return winners;
+        return positionNameMap.get(positionNameMap.lastKey());
     }
 
     public RacingResult getByCarName(String name) {

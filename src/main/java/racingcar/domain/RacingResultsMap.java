@@ -14,8 +14,8 @@ public class RacingResultsMap {
         this.racingResultsMap = map;
     }
 
-    public List<String> getWinner() {
-        return getFinalRacingResults().getWinner();
+    public List<String> getWinnerList() {
+        return getFinalRacingResults().getWinnerList();
     }
 
     public RacingResults getFinalRacingResults() {

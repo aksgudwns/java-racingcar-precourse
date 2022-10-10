@@ -53,7 +53,7 @@ public class CarsTest {
                 () -> {
                     Assertions.assertThat((cars.race(2)
                             .getFinalRacingResults()
-                            .getWinner()
+                            .getWinnerList()
                             .contains("Ford"))).isTrue();
                 },
                 MOVING_FORWARD, STOP, MOVING_FORWARD, MOVING_FORWARD,
@@ -68,7 +68,7 @@ public class CarsTest {
                 () -> {
                     Assertions.assertThat(cars.race(2)
                             .getFinalRacingResults()
-                            .getWinner()
+                            .getWinnerList()
                             .containsAll(Arrays.asList("Audi","Benz"))).isTrue();
                 },
                 MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
@@ -83,7 +83,7 @@ public class CarsTest {
                 () -> {
                     Assertions.assertThat(cars.race(2)
                             .getFinalRacingResults()
-                            .getWinner()
+                            .getWinnerList()
                             .containsAll(Arrays.asList("Audi","Benz","Ford","Volvo"))).isTrue();
                 },
                 STOP, STOP, STOP, STOP,
@@ -98,7 +98,7 @@ public class CarsTest {
                 () -> {
                     Assertions.assertThat(cars.race(1)
                             .getFinalRacingResults()
-                            .getWinner()
+                            .getWinnerList()
                             .containsAll(Arrays.asList("Audi","Benz","Ford","Volvo"))).isTrue();
                 },
                 MOVING_FORWARD,     //Audi

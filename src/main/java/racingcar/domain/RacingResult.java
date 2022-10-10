@@ -2,8 +2,6 @@ package racingcar.domain;
 
 import racingcar.utils.NumberRule;
 
-import java.util.List;
-
 public class RacingResult {
 
     private String carName;
@@ -18,20 +16,12 @@ public class RacingResult {
         this.position += isForward ? NumberRule.FORWARD_NUMBER.getValue() : 0;
     }
 
-    public int compareToPosition(int maxPosition) {
-        return this.position - maxPosition;
-    }
-
-    public void addWinner(List<String> winners) {
-        winners.add(this.carName);
-    }
-
-    public int maxPosition(int maxPosition) {
-        return this.position > maxPosition ? this.position : maxPosition;
-    }
-
     public String getCarName() {
         return this.carName;
+    }
+
+    public Integer getPosition() {
+        return this.position;
     }
 
     public RacingResult deepCopyOf() {
@@ -47,4 +37,5 @@ public class RacingResult {
         }
         return carName + " : " + printPosition + "\n";
     }
+
 }
