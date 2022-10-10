@@ -21,7 +21,7 @@ public class Cars {
         int trialNumber = 0;
         while(trialNumber++ < tryNumber) {
             RacingResults beforeRacingResults = racingResults;
-            racingResults = race(beforeRacingResults);
+            racingResults = getNextRacingResult(beforeRacingResults);
             racingResultsMap.put(trialNumber, racingResults.copyOf());
         }
         return new RacingResultsMap(racingResultsMap);
@@ -34,7 +34,7 @@ public class Cars {
         return new RacingResults(racingResults);
     }
 
-    public RacingResults race(RacingResults racingResults) {
+    public RacingResults getNextRacingResult(RacingResults racingResults) {
         for(Car car : cars) {
             RacingResult racingResult = racingResults.getByCarName(car.getName());
             racingResult.forwardPosition(car.isForward());

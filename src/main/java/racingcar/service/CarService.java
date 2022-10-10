@@ -12,7 +12,7 @@ import java.util.List;
 public class CarService {
 
     public Cars getCars(String userInput) {
-        validateGetCarInput(userInput);
+        validateGetCarsInput(userInput);
         List<Car> carList = new ArrayList<>();
         String[] carNames = userInput.split(",");
         for(String carName : carNames) {
@@ -21,19 +21,19 @@ public class CarService {
         return new Cars(carList);
     }
 
-    private void validateGetCarInput(String userInput) {
+    private void validateGetCarsInput(String userInput) {
         RacingCarStringUtils.checkNotEmpty(userInput);
         String[] carNames = userInput.split(",");
         RacingCarStringUtils.checkNotDuplicate(carNames);
-        RacingCarUtils.checkValidCarLength(carNames.length);
+        RacingCarUtils.checkValidCarNumber(carNames.length);
     }
 
     public int getTryNumber(String userInput) {
-        validateGEtTryNumberInput(userInput);
+        validateGetTryNumberInput(userInput);
         return Integer.parseInt(userInput);
     }
 
-    private void validateGEtTryNumberInput(String userInput) {
+    private void validateGetTryNumberInput(String userInput) {
         RacingCarStringUtils.checkNotEmpty(userInput);
         RacingCarStringUtils.checkNumberFormat(userInput);
         RacingCarUtils.checkMinTryNumber(Integer.parseInt(userInput));

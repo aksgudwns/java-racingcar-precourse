@@ -8,7 +8,7 @@ public enum NumberRule {
     MIN_MOVING_FORWARD_RANDOM_NUMBER(4),
     INITIAL_POSITION(0),
     FORWARD_NUMBER(1),
-    MIN_CAR_LENGTH(2),
+    MIN_CAR_NUMBER(2),
     MIN_TRY_NUMBER(1);
 
     private int value;

@@ -52,7 +52,7 @@ public class CarsTest {
         assertRandomNumberInRangeTest(
                 () -> {
                     Assertions.assertThat((cars.race(2)
-                            .getFinalRacingResult()
+                            .getFinalRacingResults()
                             .getWinner()
                             .contains("Ford"))).isTrue();
                 },
@@ -67,7 +67,7 @@ public class CarsTest {
         assertRandomNumberInRangeTest(
                 () -> {
                     Assertions.assertThat(cars.race(2)
-                            .getFinalRacingResult()
+                            .getFinalRacingResults()
                             .getWinner()
                             .containsAll(Arrays.asList("Audi","Benz"))).isTrue();
                 },
@@ -82,7 +82,7 @@ public class CarsTest {
         assertRandomNumberInRangeTest(
                 () -> {
                     Assertions.assertThat(cars.race(2)
-                            .getFinalRacingResult()
+                            .getFinalRacingResults()
                             .getWinner()
                             .containsAll(Arrays.asList("Audi","Benz","Ford","Volvo"))).isTrue();
                 },
@@ -97,7 +97,7 @@ public class CarsTest {
         assertRandomNumberInRangeTest(
                 () -> {
                     Assertions.assertThat(cars.race(1)
-                            .getFinalRacingResult()
+                            .getFinalRacingResults()
                             .getWinner()
                             .containsAll(Arrays.asList("Audi","Benz","Ford","Volvo"))).isTrue();
                 },

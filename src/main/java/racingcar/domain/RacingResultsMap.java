@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -7,24 +8,29 @@ import java.util.Map;
  */
 public class RacingResultsMap {
 
-    private Map<Integer, RacingResults> racingResultTrialMap;
+    private Map<Integer, RacingResults> racingResultsMap;
 
     public RacingResultsMap(Map<Integer, RacingResults> map) {
-        this.racingResultTrialMap = map;
+        this.racingResultsMap = map;
     }
 
-    public RacingResults getFinalRacingResult() {
-        int maxTrialNumber = -1;
-        for(Integer trialNumber : racingResultTrialMap.keySet())
-            maxTrialNumber = maxTrialNumber > trialNumber ? maxTrialNumber : trialNumber;
-        return racingResultTrialMap.get(maxTrialNumber);
+    public List<String> getWinner() {
+        return getFinalRacingResults().getWinner();
     }
+
+    public RacingResults getFinalRacingResults() {
+        int maxTrialNumber = -1;
+        for(Integer trialNumber : racingResultsMap.keySet())
+            maxTrialNumber = maxTrialNumber > trialNumber ? maxTrialNumber : trialNumber;
+        return racingResultsMap.get(maxTrialNumber);
+    }
+
 
     @Override
     public String toString() {
         String allRacingResult = "";
-        for(Integer trialNumber : racingResultTrialMap.keySet()) {
-            allRacingResult += racingResultTrialMap.get(trialNumber).toString() + "\n";
+        for(Integer trialNumber : racingResultsMap.keySet()) {
+            allRacingResult += racingResultsMap.get(trialNumber).toString() + "\n";
         }
         return allRacingResult;
     }
